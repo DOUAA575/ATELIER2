@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Voitures</title>
+</head>
+<body>
+    <h1>Liste des Voitures</h1>
+    <ul id="voiture-list"></ul>
+
+    <script>
+        
+        class Voiture {
+            constructor(model, marque, annee, type, carburant) {
+                this.model = model;
+                this.marque = marque;
+                this.annee = annee;
+                this.type = type;
+                this.carburant = carburant;
+            }
+        }
+
+       
+        class Hyundai extends Voiture {
+            constructor(model, annee, type, carburant, serie, hybride) {
+                super(model, 'Hyundai', annee, type, carburant);
+                this.serie = serie;
+                this.hybride = hybride;
+            }
+
+            alarmer() {
+                console.log(`La Hyundai ${this.model} série ${this.serie} émet une alarme !`);
+            }
+        }
+
+        
+        class Ford extends Voiture {
+            constructor(model, annee, type, carburant, options) {
+                super(model, 'Ford', annee, type, carburant);
+                this.options = options;
+            }
+        }
+
+        let voitures = [
+            new Hyundai("i30", 2020, "Compacte", "Essence", "Série 1", true),
+            new Ford("Focus", 2018, "Berline", "Diesel", ["GPS", "Climatisation"]),
+            new Hyundai("Tucson", 2022, "SUV", "Hybride", "Série 2", true),
+            new Ford("Mustang", 2015, "Sport", "Essence", ["Sièges cuir", "Toit ouvrant"]),
+        ];
+
+        voitures.sort((a, b) => a.annee - b.annee);
+
+        let voitureList = document.getElementById("voiture-list");
+        voitures.forEach(voiture => {
+            let listItem = document.createElement("li");
+            listItem.textContent = `${voiture.marque} ${voiture.model} - ${voiture.annee}`;
+            voitureList.appendChild(listItem);
+        });
+
+        
+        console.log("\n--- TESTS ---");
+        console.assert(voitures[0].annee === 2015, "Le premier élément devrait être une Ford Mustang de 2015");
+        console.assert(voitures[1].annee === 2018, "Le deuxième élément devrait être une Ford Focus de 2018");
+        console.assert(voitures[2].annee === 2020, "Le troisième élément devrait être une Hyundai i30 de 2020");
+        console.assert(voitures[3].annee === 2022, "Le dernier élément devrait être une Hyundai Tucson de 2022");
+
+        voitures[2].alarmer();
+    </script>
+</body>
+</html>
+
