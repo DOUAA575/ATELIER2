@@ -66,4 +66,32 @@ Segment :
 
 Représente un segment défini par deux points (origine et extrémité).
 
+# Mini Blog
+Ce projet est un blog simple où les utilisateurs peuvent s'inscrire, se connecter, créer des posts et lister les posts existants.
+
+Fonctionnalités
+Inscription : Permet aux utilisateurs de créer un compte avec un nom d'utilisateur et un mot de passe.
+Connexion : Permet aux utilisateurs de se connecter avec leurs identifiants.
+Créer un post : Une fois connecté, l'utilisateur peut créer un post en ajoutant un titre et une description.
+Lister les posts : L'utilisateur peut voir la liste des posts créés sur le blog.
+Technologies utilisées
+HTML : Pour structurer la page web.
+CSS : Pour le style (le style est simple et peut être amélioré si nécessaire).
+JavaScript : Pour la gestion de la logique du blog (inscription, connexion, création et affichage des posts).
+Classes principales
+User : Représente un utilisateur du blog avec un nom d'utilisateur et un mot de passe.
+Méthodes :
+toJSON() : Convertit un utilisateur en format JSON.
+fromJSON(json) : Crée un utilisateur à partir d'un JSON.
+Post : Représente un post créé sur le blog avec un titre, une description et l'utilisateur qui l'a créé.
+Méthodes :
+toJSON() : Convertit un post en format JSON.
+fromJSON(json) : Crée un post à partir d'un JSON.
+Blog : Gère les utilisateurs et les posts.
+Méthodes :
+signup(username, password) : Inscrit un nouvel utilisateur.
+login(username, password) : Permet à un utilisateur de se connecter.
+addPost(title, description, user) : Ajoute un nouveau post au blog.
+listPosts() : Affiche tous les posts du blog.
+
 
