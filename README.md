@@ -16,6 +16,21 @@ Résultats Attendus Lorsque l'application est exécutée dans un navigateur :
 •	La méthode alarmer() affiche un message de test dans la console pour une Hyundai hybride.
 •	Les tests de tri et d'affichage confirment le bon fonctionnement du programme.
 
+# Gestion des Étudiants et Professeurs
+Ce projet implémente une gestion simple des étudiants et des professeurs en JavaScript, comprenant des objets et des méthodes de tri et d'affichage.
  
+ Le projet consiste à créer des objets représentant des étudiants et des professeurs. Chaque objet possède des propriétés spécifiques, et des méthodes sont ajoutées pour interagir avec ces objets. Un système de tri des étudiants par nom et prénom est également inclus.
+
+ Création d'objets :
+
+Etudiant : Un étudiant avec les propriétés nom, prenom, age, et cne.
+Professeur : Un professeur avec les propriétés nom, age, et cin.
+Méthodes :
+
+Méthode etudier() pour l'objet Etudiant qui affiche un message lorsque l'étudiant est en train d'étudier.
+Méthode enseigner() pour l'objet Professeur qui affiche un message lorsque le professeur est en train d'enseigner.
+Tri des étudiants :
+
+Les étudiants sont triés par ordre alphabétique, d'abord par leur nom, puis par leur prénom en cas d'égalité.
 
 
