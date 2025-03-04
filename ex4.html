@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Blog</title>
+</head>
+<body>
+
+  <!-- Section de l'inscription -->
+  <div id="signup-section">
+    <h2>Inscription</h2>
+    <input type="text" id="signup-username" placeholder="Nom d'utilisateur" />
+    <input type="password" id="signup-password" placeholder="Mot de passe" />
+    <button id="signup-btn">S'inscrire</button>
+  </div>
+
+  <!-- Section de la connexion -->
+  <div id="login-section">
+    <h2>Connexion</h2>
+    <input type="text" id="login-username" placeholder="Nom d'utilisateur" />
+    <input type="password" id="login-password" placeholder="Mot de passe" />
+    <button id="login-btn">Se connecter</button>
+  </div>
+
+  <!-- Section pour poster un message -->
+  <div id="post-section" style="display: none;">
+    <h2>Créer un post</h2>
+    <input type="text" id="post-title" placeholder="Titre du post" />
+    <textarea id="post-description" placeholder="Description du post"></textarea>
+    <button id="post-btn">Publier</button>
+  </div>
+
+  <!-- Bouton pour lister les posts -->
+  <button id="list-btn">Lister les posts</button>
+
+  <script>
+    // Classe User pour représenter un utilisateur
+    class User {
+      constructor(username, password) {
+        this.username = username;
+        this.password = password;
+      }
+
+      // Convertir un objet User en JSON
+      toJSON() {
+        return JSON.stringify({
+          username: this.username,
+          password: this.password
+        });
+      }
+
+      // Créer un objet User à partir d'un JSON
+      static fromJSON(json) {
+        const data = JSON.parse(json);
+        return new User(data.username, data.password);
+      }
+    }
+
+    // Classe Post pour représenter un post du blog
+    class Post {
+      constructor(title, description, user) {
+        this.title = title;
+        this.description = description;
+        this.user = user;  // L'utilisateur qui a créé le post
+      }
+
+      // Convertir un objet Post en JSON
+      toJSON() {
+        return JSON.stringify({
+          title: this.title,
+          description: this.description,
+          user: this.user.username
+        });
+      }
+
+      // Créer un objet Post à partir d'un JSON
+      static fromJSON(json) {
+        const data = JSON.parse(json);
+        return new Post(data.title, data.description, new User(data.user, ''));
+      }
+    }
+
+    // Classe Blog pour gérer les posts et les utilisateurs
+    class Blog {
+      constructor() {
+        this.users = [];  // Tableau pour stocker les utilisateurs
+        this.posts = [];  // Tableau pour stocker les posts
+      }
+
+      // Inscription d'un utilisateur
+      signup(username, password) {
+        const newUser = new User(username, password);
+        this.users.push(newUser);
+        console.log(`Utilisateur ${username} inscrit avec succès.`);
+      }
+
+      // Connexion d'un utilisateur
+      login(username, password) {
+        const user = this.users.find(u => u.username === username && u.password === password);
+        if (user) {
+          console.log(`Connexion réussie pour ${username}.`);
+          return user;
+        } else {
+          console.log("Identifiants incorrects.");
+          return null;
+        }
+      }
+
+      // Ajouter un post
+      addPost(title, description, user) {
+        const post = new Post(title, description, user);
+        this.posts.push(post);
+        console.log("Post ajouté avec succès.");
+      }
+
+      // Lister les posts
+      listPosts() {
+        if (this.posts.length === 0) {
+          console.log("Aucun post à afficher.");
+        } else {
+          console.log("Liste des posts :");
+          this.posts.forEach(post => {
+            console.log(`Titre : ${post.title}, Description : ${post.description}, Auteur : ${post.user.username}`);
+          });
+        }
+      }
+    }
+
+    // Instanciation du blog
+    const myBlog = new Blog();
+
+    // Exemple d'interaction avec le blog via des boutons
+    document.getElementById("signup-btn").addEventListener("click", function() {
+      const username = document.getElementById("signup-username").value;
+      const password = document.getElementById("signup-password").value;
+      myBlog.signup(username, password);
+    });
+
+    document.getElementById("login-btn").addEventListener("click", function() {
+      const username = document.getElementById("login-username").value;
+      const password = document.getElementById("login-password").value;
+      const user = myBlog.login(username, password);
+      
+      if (user) {
+        document.getElementById("post-section").style.display = "block"; // Afficher le formulaire de post
+        document.getElementById("post-btn").addEventListener("click", function() {
+          const title = document.getElementById("post-title").value;
+          const description = document.getElementById("post-description").value;
+          myBlog.addPost(title, description, user);
+        });
+      }
+    });
+
+    document.getElementById("list-btn").addEventListener("click", function() {
+      myBlog.listPosts();
+    });
+  </script>
+
+</body>
+</html>
