@@ -33,4 +33,37 @@ Tri des étudiants :
 
 Les étudiants sont triés par ordre alphabétique, d'abord par leur nom, puis par leur prénom en cas d'égalité.
 
+# Gestion de Vecteurs, Rectangles et Segments
+
+Ce projet implémente une série de classes en JavaScript pour modéliser des objets géométriques, incluant des vecteurs, des rectangles, des carrés, des points, et des segments. Le projet permet de calculer des propriétés géométriques comme la somme de vecteurs ou la surface d'un rectangle, et d'afficher les informations pertinentes.
+
+Le projet contient les classes suivantes :
+
+Vecteur2D : Modélise un vecteur dans un plan 2D avec des méthodes pour additionner deux vecteurs et afficher leurs coordonnées.
+Rectangle : Représente un rectangle avec un attribut longueur, largeur, et une méthode pour calculer sa surface.
+Carre : Hérite de la classe Rectangle et surcharge l'attribut nom pour représenter un carré.
+Point : Représente un point dans un plan avec des coordonnées par défaut.
+Segment : Un segment défini par deux points (origine et extrémité) et une méthode d'affichage
+
+
+Vecteur2D :
+
+Création d'un vecteur 2D avec des coordonnées par défaut.
+Addition de deux vecteurs.
+Affichage des coordonnées du vecteur.
+Rectangle :
+
+Création d'un rectangle avec longueur et largeur par défaut.
+Calcul de la surface du rectangle.
+Carre :
+
+Hérite de la classe Rectangle, mais avec des côtés égaux (carré).
+Surcharge de l'attribut nom pour "carré".
+Point :
+
+Création d'un point avec des coordonnées par défaut (x = 0, y = 0).
+Segment :
+
+Représente un segment défini par deux points (origine et extrémité).
+
 
